@@ -5,11 +5,11 @@ import org.springframework.boot.logging.LogLevel;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import static com.example.LogRolling.util.LogUtils.createFile;
 import static com.example.LogRolling.util.LogUtils.formatLogMessage;
 
 public class TimeRollingStrategy implements RollingAppenderStrategy{
@@ -42,9 +42,4 @@ public class TimeRollingStrategy implements RollingAppenderStrategy{
         return currentMinute != prevMinute;
     }
 
-    private Path createFile(String directoryPath, String fileName) throws IOException {
-        Path filePath = Paths.get(directoryPath, fileName);
-        Files.createDirectories(filePath.getParent());
-        return Files.createFile(filePath);
-    }
 }
