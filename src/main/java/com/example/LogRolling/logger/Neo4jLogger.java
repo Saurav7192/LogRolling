@@ -2,6 +2,7 @@ package com.example.LogRolling.logger;
 
 import com.example.LogRolling.logger.rolling.RollingAppenderStrategy;
 import com.example.LogRolling.logger.rolling.TimeRollingStrategy;
+import org.springframework.boot.logging.LogLevel;
 
 public class Neo4jLogger implements Logger{
     private final RollingAppenderStrategy rollingAppender;
@@ -12,7 +13,12 @@ public class Neo4jLogger implements Logger{
 
     @Override
     public void info(String message) {
-        rollingAppender.writeInFile(message);
+        try{
+            rollingAppender.writeInFile(message, LogLevel.INFO);
+        } catch (Exception e){
+            System.out.println("Exception in Neo4J Logging "+e);
+        }
+
     }
 
     @Override
