@@ -4,7 +4,6 @@ import com.example.LogRolling.logger.Logger;
 import com.example.LogRolling.logger.Neo4jLogger;
 import com.example.LogRolling.logger.SimpleLogger;
 import com.example.LogRolling.logger.TrinityLogger;
-import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 @Service
