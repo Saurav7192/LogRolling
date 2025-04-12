@@ -12,14 +12,14 @@ import java.util.Objects;
 import static com.example.LogRolling.util.LogUtils.createFile;
 import static com.example.LogRolling.util.LogUtils.formatLogMessage;
 
-public class TimeRollingStrategy implements RollingAppenderStrategy{
+public class TimeBasedRollingStrategy implements RollingAppenderStrategy{
 
     private static final String logPath = "src/main/java/com/example/LogRolling/logs/timerollinglogs/%s/%s";
     private Path logFilePath;
     private Integer prevMinute;
 
     @Override
-    public void writeInFile(String logMessage, LogLevel level) throws IOException {
+    public synchronized void writeInFile(String logMessage, LogLevel level) throws IOException {
         LocalDateTime time = LocalDateTime.now();
         if(isRollingUpdateApplicable(time)){
             rollingUpdate(time);
@@ -27,7 +27,7 @@ public class TimeRollingStrategy implements RollingAppenderStrategy{
         Files.write(logFilePath, formatLogMessage(logMessage, level).getBytes(), StandardOpenOption.APPEND);
     }
 
-    private void rollingUpdate(LocalDateTime time) throws IOException {
+    private synchronized void rollingUpdate(LocalDateTime time) throws IOException {
         String directoryPath = String.format(logPath, time.getDayOfMonth(), time.getHour());
         String fileName = "logfile-"+time.getMinute()+".txt";
         logFilePath = createFile(directoryPath, fileName);

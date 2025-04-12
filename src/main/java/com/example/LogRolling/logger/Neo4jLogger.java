@@ -1,14 +1,14 @@
 package com.example.LogRolling.logger;
 
 import com.example.LogRolling.logger.rolling.RollingAppenderStrategy;
-import com.example.LogRolling.logger.rolling.TimeRollingStrategy;
+import com.example.LogRolling.logger.rolling.TimeBasedRollingStrategy;
 import org.springframework.boot.logging.LogLevel;
 
 public class Neo4jLogger implements Logger{
     private final RollingAppenderStrategy rollingAppender;
 
     public Neo4jLogger(){
-        rollingAppender = new TimeRollingStrategy();
+        rollingAppender = new TimeBasedRollingStrategy();
     }
 
     @Override
