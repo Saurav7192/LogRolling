@@ -2,7 +2,6 @@ package com.example.LogRolling.logger;
 
 import com.example.LogRolling.logger.rolling.FileSizeBasedRollingStrategy;
 import com.example.LogRolling.logger.rolling.RollingAppenderStrategy;
-import com.example.LogRolling.logger.rolling.TimeBasedRollingStrategy;
 import org.springframework.boot.logging.LogLevel;
 
 public class TrinityLogger implements Logger{
