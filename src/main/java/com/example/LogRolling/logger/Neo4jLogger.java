@@ -16,13 +16,16 @@ public class Neo4jLogger implements Logger{
         try{
             rollingAppender.writeInFile(message, LogLevel.INFO);
         } catch (Exception e){
-            System.out.println("Exception in Neo4J Logging "+e);
+            System.out.println("Exception in Neo4J info Logging "+e);
         }
-
     }
 
     @Override
     public void error(String message) {
-
+        try{
+            rollingAppender.writeInFile(message, LogLevel.ERROR);
+        } catch (Exception e){
+            System.out.println("Exception in Neo4J error logging "+e);
+        }
     }
 }

@@ -16,7 +16,7 @@ public class MessageController {
     @PostMapping("/message")
     public String logMessage(@RequestParam("message") String message){
 
-        service.doLogging();
-        return null;
+        service.doLogging(message);
+        return "Successfully log written in file";
     }
 }
